@@ -39,15 +39,17 @@ aria login
 | Linux x64 (musl, e.g. Alpine) | `aria-linux-x64-musl.gz` |
 | Windows x64 | `aria-windows-x64.zip` |
 
+On Alpine the CLI needs `libstdc++` and `libgcc`: `apk add libstdc++ libgcc`.
+
 Every release also carries `SHA256SUMS`.
 
 ## Versions and updates
 
-Each release is named `cli-<id>`, where `<id>` identifies the exact code of the CLI: a new release appears only when that code changes, and every ARIA instance points to the release that matches its own version. Releases marked **Pre-release** belong to test instances.
+Each release has a version number (`x.y.z`, for example `1.0.0`) and an id (`cli-<id>`), where `<id>` identifies the exact code of the CLI. The number is the one you read and quote; the id is the release's identity (its tag and the names of its files). A new release appears only when the code changes, and every ARIA instance points to the release that matches its own version. Releases marked **Pre-release** belong to test instances.
 
-- `aria --version` prints the version you have.
-- When it differs from your instance's, the CLI prints a one-line notice and carries on.
-- `aria update` installs your instance's version, with the same checks as the installer.
+- `aria --version` prints the version you have, as `aria <number> (<id>)`, for example `aria 1.0.0 (cli-0123456789ab)`.
+- When it differs from your instance's, the CLI prints a one-line notice with the number and id of both, and carries on.
+- `aria update` installs your instance's version, with the same checks as the installer: the new program must print exactly the line your instance expects, number included, before it replaces the one you have.
 
 On Windows, if `aria update` is interrupted at the wrong moment and the `aria` command goes missing, run the install command again: it restores it.
 
